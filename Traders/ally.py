@@ -16,8 +16,8 @@ class AllyTrader:
 
 
     def login(self, driver):
-        ally_username = os.getenv('ally_username')
-        ally_password = os.getenv('ally_password')
+        ally_username = os.getenv('ALLY_USERNAME')
+        ally_password = os.getenv('ALLY_PASSWORD')
 
         driver.get("https://secure.ally.com/")
         username_input = WebDriverWait(driver, 8).until(

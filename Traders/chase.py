@@ -16,8 +16,8 @@ class ChaseTrader:
 
     def login(self, driver):
         load_dotenv()
-        chase_username = os.getenv('chase_user')
-        chase_password = os.getenv('chase_password')
+        chase_username = os.getenv('CHASE_USER')
+        chase_password = os.getenv('CHASE_PASSWORD')
 
         print('=============  CHASE  =============')
         driver.get('https://secure09ea.chase.com/web/auth/#/logon/logon/chaseOnline?navKey=reviewOffers&lang=en')

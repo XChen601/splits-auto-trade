@@ -1,15 +1,16 @@
-from SplitsUpdated.Traders.tracker import Tracker
-from SplitsUpdated.Traders.schwab import SchwabTrader
-from SplitsUpdated.Traders.fidelity import FidelityTrader
-from SplitsUpdated.Traders.vanguard import VanguardTrader
-from SplitsUpdated.Traders.firstrade import FirstradeTrader
-from SplitsUpdated.Traders.tastytrade import TastyTrader
-from SplitsUpdated.Traders.tradier import TradierTrader
-from SplitsUpdated.Traders.stocktwits import StocktwitsTrader
-from SplitsUpdated.Traders.chase import ChaseTrader
-from SplitsUpdated.Traders.ally import AllyTrader
-from SplitsUpdated.Traders.wells import WellsTrader
+from Traders.tracker import Tracker
+from Traders.schwab import SchwabTrader
+from Traders.fidelity import FidelityTrader
+from Traders.vanguard import VanguardTrader
+from Traders.firstrade import FirstradeTrader
+from Traders.tastytrade import TastyTrader
+from Traders.tradier import TradierTrader
+from Traders.stocktwits import StocktwitsTrader
+from Traders.chase import ChaseTrader
+from Traders.ally import AllyTrader
+from Traders.wells import WellsTrader
 from seleniumbase import Driver
+
 
 PATH = "/ReverseSplits/chromedriver.exe"
 SHARE_AMT = 1

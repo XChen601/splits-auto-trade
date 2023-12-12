@@ -15,8 +15,8 @@ class FirstradeTrader:
 
     def login(self, driver):
         load_dotenv()
-        firstrade_username = os.getenv("firstrade_username")
-        firstrade_password = os.getenv("firstrade_password")
+        firstrade_username = os.getenv("FIRSTRADE_USERNAME")
+        firstrade_password = os.getenv("FIRSTRADE_PASSWORD")
 
         driver.get('https://invest.firstrade.com/cgi-bin/login?ft_locale=en-us')
         username_input = WebDriverWait(driver, 12).until(

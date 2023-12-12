@@ -1,16 +1,16 @@
-import undetected_chromedriver.v2 as uc
+from Traders.tracker import Tracker
+from Traders.schwab import SchwabTrader
+from Traders.fidelity import FidelityTrader
+from Traders.vanguard import VanguardTrader
+from Traders.firstrade import FirstradeTrader
+from Traders.tastytrade import TastyTrader
+from Traders.tradier import TradierTrader
+from Traders.stocktwits import StocktwitsTrader
+from Traders.chase import ChaseTrader
+from Traders.ally import AllyTrader
+from Traders.wells import WellsTrader
+from seleniumbase import Driver
 
-from SplitsUpdated.Traders.tracker import Tracker
-from SplitsUpdated.Traders.schwab import SchwabTrader
-from SplitsUpdated.Traders.fidelity import FidelityTrader
-from SplitsUpdated.Traders.vanguard import VanguardTrader
-from SplitsUpdated.Traders.firstrade import FirstradeTrader
-from SplitsUpdated.Traders.tastytrade import TastyTrader
-from SplitsUpdated.Traders.tradier import TradierTrader
-from SplitsUpdated.Traders.stocktwits import StocktwitsTrader
-from SplitsUpdated.Traders.chase import ChaseTrader
-from SplitsUpdated.Traders.ally import AllyTrader
-from SplitsUpdated.Traders.wells import WellsTrader
 
 PATH = "/ReverseSplits/chromedriver.exe"
 SHARE_AMT = 1
@@ -25,19 +25,17 @@ mom_accounts = 13
 
 def new_driver(driver):
     driver.quit()
-    options = uc.ChromeOptions()
-    driver = uc.Chrome(driver_executable_path=PATH, use_subprocess=True, options=options)
+    driver = Driver(uc=True, incognito=True)
     return driver
 
 def sell_day_ones(driver, symbol_list, limit_price, trade_type="sell"):
     schwab_trader.trade(driver, symbol_list, limit_price, trade_type, schwab_accounts)
-    fidelity_trader.trade(driver, symbol_list, limit_price, trade_type)
-    vanguard_trader.trade(driver, symbol_list, limit_price, trade_type)
-    firstrade_trader.trade(driver, symbol_list, limit_price, trade_type)
     tasty_trader.trade(driver, symbol_list, limit_price, trade_type)
     tradier_trader.trade(symbol_list, trade_type)
-    wells_trader.trade(driver, symbol_list, limit_price, trade_type)
-    # total accounts = 23 + 10 + 9 + 13 + 10 = 65
+    driver = new_driver(driver)
+    schwab_trader.trade(driver, symbol_list, limit_price, trade_type, mom_accounts, mom=True)
+    chase_trader.trade(driver, symbol_list, limit_price, trade_type)
+    # total accounts = 23 + 10 + 9 + 13 + 4 = 59
 
 
 if __name__ == "__main__":
@@ -50,8 +48,7 @@ if __name__ == "__main__":
 
     symbol_list = symbols.replace(" ", "").split(',')
 
-    options = uc.ChromeOptions()
-    driver = uc.Chrome(driver_executable_path=PATH, use_subprocess=True, options=options)
+    driver = Driver(uc=True, incognito=True)
 
     schwab_trader = SchwabTrader(tracker, SHARE_AMT, EXTENDED_HOUR)
     fidelity_trader = FidelityTrader(tracker, SHARE_AMT, EXTENDED_HOUR, fid_accounts)
@@ -64,19 +61,24 @@ if __name__ == "__main__":
     ally_trader = AllyTrader(tracker, SHARE_AMT, EXTENDED_HOUR, ally_accounts)
     wells_trader = WellsTrader(tracker, SHARE_AMT)
 
-    #fidelity_trader.trade(driver, symbol_list, limit_price, trade_type)
-    vanguard_trader.trade(driver, symbol_list, limit_price, trade_type)
-    schwab_trader.trade(driver, symbol_list, limit_price, trade_type, schwab_accounts)
-    firstrade_trader.trade(driver, symbol_list, limit_price, trade_type)
-    tasty_trader.trade(driver, symbol_list, limit_price, trade_type)
-    tradier_trader.trade(symbol_list, trade_type)
-    driver = new_driver(driver)
-    schwab_trader.trade(driver, symbol_list, limit_price, trade_type, mom_accounts, mom=True)
-    chase_trader.trade(driver, symbol_list, limit_price, trade_type)
-    ally_trader.trade(driver, symbol_list, limit_price, trade_type)
-    wells_trader.trade(driver, symbol_list, limit_price, trade_type)
+    try:
+        #fidelity_trader.trade(driver, symbol_list, limit_price, trade_type)
+        #vanguard_trader.trade(driver, symbol_list, limit_price, trade_type)
+        # schwab_trader.trade(driver, symbol_list, limit_price, trade_type, schwab_accounts)
+        # firstrade_trader.trade(driver, symbol_list, limit_price, trade_type)
+        # tasty_trader.trade(driver, symbol_list, limit_price, trade_type)
+        # tradier_trader.trade(symbol_list, trade_type)
+        # driver = new_driver(driver)
+        # schwab_trader.trade(driver, symbol_list, limit_price, trade_type, mom_accounts, mom=True)
+        # chase_trader.trade(driver, symbol_list, limit_price, trade_type)
+        # ally_trader.trade(driver, symbol_list, limit_price, trade_type)
+        # wells_trader.trade(driver, symbol_list, limit_price, trade_type)
+        pass
+    except Exception as e:
+        print(e)
+        driver.quit()
 
-    #sell_day_ones(driver, symbol_list, limit_price, trade_type)
+    sell_day_ones(driver, symbol_list, limit_price, trade_type)
 
 
 

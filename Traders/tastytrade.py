@@ -16,8 +16,8 @@ class TastyTrader:
 
     def login(self, driver):
         load_dotenv()
-        tastyworks_username = os.getenv('tastyworks_username')
-        tastyworks_password = os.getenv('tastyworks_password')
+        tastyworks_username = os.getenv('TASTYWORKS_USERNAME')
+        tastyworks_password = os.getenv('TASTYWORKS_PASSWORD')
 
         driver.get('https://trade.tastyworks.com/login/index.html')
         username_input = WebDriverWait(driver, 10).until(

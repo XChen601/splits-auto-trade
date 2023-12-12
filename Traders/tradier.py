@@ -8,8 +8,8 @@ class TradierTrader:
     def __init__(self, tracker, share_amt):
         self.tracker = tracker
         self.share_amt = share_amt
-        self.token = os.getenv("tradier_token")
-        self.accounts = os.getenv("tradier_accounts")
+        self.token = os.getenv("TRADIER_TOKEN")
+        self.accounts = os.getenv("TRADIER_ACCOUNTS")
 
     def trade(self, symbol_list, trade_type):
         accounts_list = self.accounts.split(',')

@@ -14,8 +14,8 @@ class FidelityTrader:
 
     def login(self, driver):
         load_dotenv()
-        fid_username = os.getenv('fid_username')
-        fid_password = os.getenv('fid_password')
+        fid_username = os.getenv('FID_USERNAME')
+        fid_password = os.getenv('FID_PASSWORD')
         driver.get(
             'https://digital.fidelity.com/prgw/digital/login/full-page?AuthRedUrl=https://digital.fidelity.com/ftgw/digital/portfolio/summary')
         time.sleep(1)

@@ -14,8 +14,8 @@ class SchwabTrader:
 
     def login(self, driver, mom):
         load_dotenv()
-        schwab_user = os.getenv('schwab_user')
-        schwab_password = os.getenv('schwab_password')
+        schwab_user = os.getenv('SCHWAB_USER')
+        schwab_password = os.getenv('SCHWAB_PASSWORD')
 
         mom_user = os.getenv('mom_user')
         mom_password = os.getenv('mom_password')

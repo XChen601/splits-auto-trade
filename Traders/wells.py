@@ -18,17 +18,17 @@ class WellsTrader:
 
         def handleLoginError(driver):
             user_input = WebDriverWait(driver, 6).until(EC.presence_of_element_located((By.ID, 'j_username')))
-            user_input.send_keys(os.getenv('wells_user'))
+            user_input.send_keys(os.getenv('WELLS_USER'))
 
             password_input = WebDriverWait(driver, 6).until(EC.presence_of_element_located((By.ID, 'j_password')))
-            password_input.send_keys(os.getenv('wells_password'))
+            password_input.send_keys(os.getenv('WELLS_PASSWORD'))
 
         driver.get('https://www.wellsfargoadvisors.com/online-access/signon.htm')
         user_input = WebDriverWait(driver, 6).until(EC.presence_of_element_located((By.ID, 'j_username')))
-        user_input.send_keys(os.getenv('wells_user'))
+        user_input.send_keys(os.getenv('WELLS_USER'))
 
         password_input = WebDriverWait(driver, 6).until(EC.presence_of_element_located((By.ID, 'j_password')))
-        password_input.send_keys(os.getenv('wells_password'))
+        password_input.send_keys(os.getenv('WELLS_PASSWORD'))
 
         login_button = WebDriverWait(driver, 6).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'input[value="Sign On"]')))
